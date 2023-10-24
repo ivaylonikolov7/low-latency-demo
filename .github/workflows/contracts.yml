@@ -14,7 +14,6 @@ jobs:
             run:
                 working-directory: ./contracts
         env:
-            REPORT_GAS: true
             PRIVATE_KEY: ${{ vars.PRIVATE_KEY }}
             INFURA_KEY: ${{ vars.INFURA_KEY }}
         steps:
@@ -25,6 +24,10 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
+
+            - name: Check env variables
+              run: |
+                  echo "$PRIVATE_KEY"
 
             - name: Run tests
               run: npx hardhat test
