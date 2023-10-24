@@ -14,8 +14,8 @@ jobs:
             run:
                 working-directory: ./contracts
         env:
-            PRIVATE_KEY: ${{ vars.PRIVATE_KEY }}
-            INFURA_KEY: ${{ vars.INFURA_KEY }}
+            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+            INFURA_KEY: ${{ secrets.INFURA_KEY }}
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v2
@@ -24,10 +24,6 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-
-            - name: Check env variables
-              run: |
-                  echo "$PRIVATE_KEY"
 
             - name: Run tests
               run: npx hardhat test
